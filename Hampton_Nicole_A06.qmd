@@ -48,7 +48,7 @@ To get full credit for this Question you must:
 
 ## Github Repo Link
 
-[https://your-github-repo-url](https://your-github-repo-url)
+[https://github.com/nicole-hampton/Hampton_Nicole_201_A06](https://github.com/nicole-hampton/Hampton_Nicole_201_A06)
 
 :::
 
@@ -56,7 +56,7 @@ To get full credit for this Question you must:
 
 ## Screenshot/image of RStudio
 
-![](filepath.png)
+![](Git_R_Screenshot.png)
 
 :::
 
@@ -102,7 +102,8 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
-
+player_info[[2]][[4]]
+player_info$LJ$points
 ```
 
 
@@ -113,7 +114,12 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
-
+player_info$MJ$height <- 78
+player_info$LJ$height <- 81
+player_info$KB$height <- 78
+player_info$KA$height <- 86
+player_info$SO$height <- 85
+player_info
 ```
 
 
@@ -132,7 +138,12 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
-
+points_per_game <- list()
+for (player in names(player_info)) {
+  points_per_game[[player]] <- 
+    player_info[[player]][[4]] / player_info[[player]][[3]]
+}
+points_per_game
 ```
 
 
@@ -143,7 +154,8 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-
+points_per_game_round <- lapply(points_per_game, function(x) round(x, digits = 2))
+points_per_game_round
 ```
 
 
