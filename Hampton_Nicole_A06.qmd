@@ -154,7 +154,7 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-points_per_game_round <- lapply(points_per_game, function(x) round(x, digits = 2))
+points_per_game_round <- lapply(points_per_game, function(x) {round(x, digits = 2)})
 points_per_game_round
 ```
 
@@ -176,7 +176,12 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+rounding <- function(x) {
+  round(x, digits = -(nchar(x) - 1))
+}
 
+mat_rand <- apply(mat_rand, 1:2, function(x) rounding(x))
+mat_rand
 ```
 
 
